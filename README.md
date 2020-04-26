@@ -1,5 +1,5 @@
 # MotionEye / DOCKER / NGINX / CCTV HUB
-This is a project for me to access several remote CCTV cameras which are running on a series of [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) machines. It uses the latest version of [Docker CE](https://docs.docker.com/engine/install/debian/#install-using-the-convenience-script) and [nginx](https://hub.docker.com/_/nginx).
+This is a project for me to access several remote CCTV cameras which are running on a series of [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) machines. It uses the latest version of [Docker CE](https://docs.docker.com/engine/install/debian/#install-using-the-convenience-script), [nginx](https://hub.docker.com/_/nginx) and [Let's Encrypt](https://letsencrypt.org/).
 
 Each of the [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) is installed with [Raspbian Buster with Desktop](https://www.raspberrypi.org/downloads/raspbian/) and [Motioneye](https://github.com/ccrisan/motioneye).
 
@@ -22,7 +22,7 @@ Create or Edit your Dockerfile
 
 Save and exit your file.
 
-Download or create the `conf` and `html` directories. These will be copied over to your image.
+Download or create the `conf`, `html` and `certs` directories. These will be copied over to your image.
 
 `:~/nginx $ docker build --no-cache -t <YOUR DOCKER ID>/<IMAGE NAME>:<TAGS> .`
 
@@ -36,7 +36,7 @@ Make sure you include the . at the end.
 
 ### On a single machine
 
-`:~/nginx $ docker run --name cctv -p 80:80 -d  rpitns/cctv:v1.0-armhf`
+`:~/nginx $ docker run --name cctv -p 80:80 -p 443:443 -d  rpitns/cctv:v1.0-armhf`
 
 You can verify it is running by typing
 
